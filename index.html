@@ -1,11 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hello!</title>
+    <title>Laura Conconi | Visual & Audiovisual Design</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(120deg, #d9d9d9, #bcbcbc, #e6e6e6);
+            color: #2f2f2f;
+            overflow-x: hidden;
+        }
+
+        .page {
+            max-width: 1000px;
+            margin: auto;
+            padding: 80px 40px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #b14ddb;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-top: 8px;
+            color: #7d3fa1;
+        }
+
+        section {
+            margin-top: 70px;
+        }
+
+        .about {
+            max-width: 650px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* WORK LINKS */
+        .works {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .work-link {
+            padding: 30px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #f0d7ff, #ddb4f2);
+            color: #4b1f66;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .work-link::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .work-link:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(177, 77, 219, 0.35);
+        }
+
+        .work-link:hover::after {
+            opacity: 1;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            margin-top: 90px;
+            padding: 60px 40px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #cfa0e8, #f1d9ff);
+        }
+
+        .contact-section h3 {
+            color: #4b1f66;
+            font-weight: 500;
+        }
+
+        .contact-section a {
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #4b1f66;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-section a:hover {
+            opacity: 0.7;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* TRANSITION ON CLICK */
+        .fade-out {
+            animation: fadeOut 0.6s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
 </head>
+
 <body>
-    Questa è la mia homepage 
+    <div class="page" id="page">
+
+        <!-- HEADER -->
+        <header>
+            <h1>Laura Conconi</h1>
+            <h2>Visual & Audiovisual Design</h2>
+        </header>
+
+        <!-- ABOUT -->
+        <section class="about">
+            <p>
+                Utilizzo il linguaggio visivo come strumento di ricerca.
+                Mi muovo tra video, fotografia e sperimentazione per
+                esplorare identità, percezione e narrazione.
+            </p>
+        </section>
+
+        <!-- WORKS -->
+        <section>
+            <h3>Selected works</h3>
+            <div class="works">
+                <div class="work-link" onclick="openLink()">Link 1</div>
+                <div class="work-link" onclick="openLink()">Link 2</div>
+                <div class="work-link" onclick="openLink()">Link 3</div>
+                <div class="work-link" onclick="openLink()">Link 4</div>
+            </div>
+        </section>
+
+        <!-- CONTACTS -->
+        <section class="contact-section">
+            <h3>Contacts</h3>
+            <a href="mailto:lauraconconi97@gmail.com">lauraconconi97@gmail.com</a>
+            <a href="https://www.instagram.com/lauraaconconi/" target="_blank">Instagram</a>
+        </section>
+
+        <footer>
+            © 2026 Laura Conconi
+        </footer>
+
+    </div>
+
+    <script>
+        function openLink() {
+            const page = document.getElementById("page");
+            page.classList.add("fade-out");
+
+            setTimeout(() => {
+                alert("Qui potrai collegare il progetto ✨");
+                page.classList.remove("fade-out");
+            }, 600);
+        }
+    </script>
 </body>
 </html>
