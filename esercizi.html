@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizi | Laura Conconi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --text: #ffffff;
+            --accent: #d44d8c;
+            --dim-accent: rgba(212, 77, 140, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+        }
+
+        #cursor {
+            width: 10px; height: 10px; background: var(--accent);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 10000; transition: transform 0.1s ease-out;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        nav { padding: 40px 8%; }
+        .back-btn {
+            text-decoration: none; color: var(--text); font-size: 0.7rem;
+            text-transform: uppercase; letter-spacing: 3px;
+            opacity: 0.5; transition: 0.3s;
+        }
+        .back-btn:hover { opacity: 1; color: var(--accent); }
+
+        header { padding: 0 8% 60px; }
+        
+        .title-container { overflow: hidden; }
+
+        .title-main {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+            display: block;
+            animation: slideUp 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        .title-sub {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+            display: inline-block;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+            transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: fadeInRight 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
+        }
+
+        /* Effetto Sfumatura Rosa-Nero al Hover sul Titolo */
+        .title-sub:hover {
+            background: linear-gradient(to bottom, var(--accent) 0%, var(--bg) 95%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-stroke: 1px transparent;
+            opacity: 1 !important;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInRight {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 0.4; }
+        }
+
+        /* Griglia */
+        .grid-esercizi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; 
+            padding: 0 8% 100px;
+        }
+
+        .icon-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 80px 40px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardReveal 0.8s ease forwards 0.6s;
+        }
+
+        @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
+
+        .icon-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            background: var(--dim-accent);
+        }
+
+        .icon-visual {
+            width: 50px; height: 50px;
+            border: 1px solid var(--accent);
+            margin-bottom: 30px;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.4s;
+        }
+
+        .icon-visual::after {
+            content: '</>';
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .icon-card:hover .icon-visual {
+            background: var(--accent);
+            box-shadow: 0 0 25px var(--accent);
+        }
+        
+        .icon-card:hover .icon-visual::after { color: white; }
+
+        .icon-card h3 { 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            margin-bottom: 10px; 
+        }
+
+        .icon-card p { 
+            font-size: 0.7rem; 
+            color: var(--accent); 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) { .grid-esercizi { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="index.html" class="back-btn">← Home</a>
+    </nav>
+
+    <header>
+        <span style="color: var(--accent); font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; display: block; margin-bottom: 15px;">Lab // Archive</span>
+        <div class="title-container">
+            <span class="title-main">Esercizi</span>
+            <span class="title-sub">Coding</span>
+        </div>
+    </header>
+
+    <main class="grid-esercizi">
+        <a href="es%202/index.html" class="icon-card">
+            <div class="icon-visual"></div>
+            <h3>Esercizio 1</h3>
+            <p>Interactive Code</p>
+        </a>
+
+        <a href="es%203/index.html" class="icon-card" style="animation-delay: 0.8s;">
+            <div class="icon-visual"></div>
+            <h3>Esercizio 2</h3>
+            <p>Interactive Code</p>
+        </a>
+    </main>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, .title-sub').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(6)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
+    </script>
+</body>
+</html>
