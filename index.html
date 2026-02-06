@@ -3,199 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laura Conconi | Visual & Audiovisual Design</title>
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <title>Laura Conconi | Visual Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+        :root {
+            --bg: #0d0d0d;
+            --text: #ffffff;
+            --accent: #d44d8c;
+            --dim-accent: rgba(212, 77, 140, 0.15);
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
         body {
-            min-height: 100vh;
-            background: linear-gradient(120deg, #d9d9d9, #bcbcbc, #e6e6e6);
-            color: #2f2f2f;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            line-height: 1.1;
         }
 
-        .page {
-            max-width: 1000px;
-            margin: auto;
-            padding: 80px 40px;
-            animation: fadeIn 1.2s ease;
+        #cursor {
+            width: 10px; height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 0 15px var(--accent);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            position: relative;
+            overflow: hidden;
         }
+
+        .hero-wrap { position: relative; z-index: 10; width: 100%; }
 
         h1 {
-            font-size: 3rem;
-            font-weight: 600;
-            color: #b14ddb;
-            letter-spacing: 1px;
+            font-size: clamp(3.5rem, 13vw, 11rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(255,255,255,0.8);
+            transition: 0.4s ease-in-out;
         }
 
-        h2 {
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-top: 8px;
-            color: #7d3fa1;
+        h1:hover {
+            background: linear-gradient(to bottom, var(--accent) 0%, var(--bg) 95%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-stroke: 1px transparent;
+        }
+
+        .visual-bar {
+            font-size: clamp(1.5rem, 6vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--dim-accent);
+            position: absolute;
+            bottom: -35px;
+            left: 5px;
+            z-index: -1;
+            white-space: nowrap;
+        }
+
+        #photo-canvas {
+            position: absolute;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80%; 
+            height: 110%;
+            z-index: 1;
+            pointer-events: none;
+            mask-image: linear-gradient(to left, black 40%, transparent 90%);
+            opacity: 0.9;
+            filter: brightness(1.2);
         }
 
         section {
-            margin-top: 70px;
-        }
-
-        .about {
-            max-width: 650px;
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        /* WORK LINKS */
-        .works {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .work-link {
-            padding: 30px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, #f0d7ff, #ddb4f2);
-            color: #4b1f66;
-            text-align: center;
-            cursor: pointer;
+            padding: 80px 8%;
+            background: var(--bg);
             position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            z-index: 20;
         }
 
-        .work-link::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.2);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .work-link:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(177, 77, 219, 0.35);
-        }
-
-        .work-link:hover::after {
-            opacity: 1;
-        }
-
-        /* CONTACT SECTION */
-        .contact-section {
-            margin-top: 90px;
-            padding: 60px 40px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #cfa0e8, #f1d9ff);
-        }
-
-        .contact-section h3 {
-            color: #4b1f66;
-            font-weight: 500;
-        }
-
-        .contact-section a {
+        .label {
+            font-size: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
             display: block;
-            margin-top: 15px;
-            text-decoration: none;
-            color: #4b1f66;
-            font-size: 0.95rem;
-            transition: opacity 0.3s ease;
         }
 
-        .contact-section a:hover {
-            opacity: 0.7;
+        .about-text {
+            font-size: clamp(0.95rem, 1.8vw, 1.3rem);
+            font-weight: 300;
+            color: #999;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+        .about-text b { color: var(--text); font-weight: 500; }
+
+        .projects-section {
+            position: relative;
+            background: radial-gradient(circle at center, rgba(212, 77, 140, 0.08) 0%, var(--bg) 70%);
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding-top: 20px;
+        }
+
+        .ex-card {
+            background: rgba(13, 13, 13, 0.6);
+            padding: 70px 40px;
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(255,255,255,0.08);
+            display: block;
+            backdrop-filter: blur(10px);
+        }
+
+        .ex-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(212, 77, 140, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .ex-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-top: 10px;
         }
 
         footer {
-            margin-top: 80px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #666;
+            padding: 80px 8% 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* TRANSITION ON CLICK */
-        .fade-out {
-            animation: fadeOut 0.6s forwards;
+        .footer-small-title {
+            font-size: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
         }
 
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
+        .contact-links { display: flex; flex-direction: column; }
+
+        .contact-item {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+        }
+
+        .contact-item:hover { color: var(--accent); padding-left: 15px; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            #photo-canvas { width: 130%; opacity: 0.4; right: -15%; }
+            .exercise-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-
 <body>
-    <div class="page" id="page">
 
-        <!-- HEADER -->
-        <header>
-            <h1>Laura Conconi</h1>
-            <h2>Visual & Audiovisual Design</h2>
-        </header>
+    <div id="cursor"></div>
 
-        <!-- ABOUT -->
-        <section class="about">
-            <p>
-                Utilizzo il linguaggio visivo come strumento di ricerca.
-                Mi muovo tra video, fotografia e sperimentazione per
-                esplorare identità, percezione e narrazione.
-            </p>
-        </section>
+    <header>
+        <canvas id="photo-canvas"></canvas>
+        <div class="hero-wrap reveal">
+            <h1>LAURA<br>CONCONI</h1>
+            <div class="visual-bar">Visual Designer</div>
+        </div>
+    </header>
 
-        <!-- WORKS -->
-        <section>
-            <h3>Selected works</h3>
-            <div class="works">
-                <div class="work-link" onclick="openLink()">Link 1</div>
-                <div class="work-link" onclick="openLink()">Link 2</div>
-                <div class="work-link" onclick="openLink()">Link 3</div>
-                <div class="work-link" onclick="openLink()">Link 4</div>
-            </div>
-        </section>
+    <section class="reveal">
+        <span class="label">01 // Profile</span>
+        <p class="about-text">
+            Studentessa di <b>comunicazione visiva</b>, esploro nuove idee attraverso progetti grafici e design. Sperimentazione e apprendimento costante guidano il mio percorso creativo.
+        </p>
+    </section>
 
-        <!-- CONTACTS -->
-        <section class="contact-section">
-            <h3>Contacts</h3>
-            <a href="mailto:lauraconconi97@gmail.com">lauraconconi97@gmail.com</a>
-            <a href="https://www.instagram.com/lauraaconconi/" target="_blank">Instagram</a>
-        </section>
+    <section class="projects-section">
+        <div class="exercise-grid">
+            <a href="esercizi.html" class="ex-card reveal">
+                <span class="label">01 // Lab</span>
+                <h3 class="ex-title">Esercizi</h3>
+            </a>
+            <a href="visual.html" class="ex-card reveal">
+                <span class="label">02 // Project</span>
+                <h3 class="ex-title">I Miei Progetti</h3>
+            </a>
+        </div>
+    </section>
 
-        <footer>
-            © 2026 Laura Conconi
-        </footer>
-
-    </div>
+    <footer class="reveal">
+        <h2 class="footer-small-title">Contattami</h2>
+        <div class="contact-links">
+            <a href="mailto:lauraconconi97@gmail.com" class="contact-item">
+                Email <span>lauraconconi97@gmail.com</span>
+            </a>
+            <a href="https://www.instagram.com/lauraaconconi/" target="_blank" class="contact-item">
+                Instagram <span>@lauraaconconi</span>
+            </a>
+        </div>
+        <div style="margin-top: 60px; display: flex; justify-content: space-between; opacity: 0.2; font-size: 0.5rem; letter-spacing: 2px;">
+            <p>© 2026 LC STUDIO</p>
+            <p>DESIGN & CODING BY LC</p>
+        </div>
+    </footer>
 
     <script>
-        function openLink() {
-            const page = document.getElementById("page");
-            page.classList.add("fade-out");
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-            setTimeout(() => {
-                alert("Qui potrai collegare il progetto ✨");
-                page.classList.remove("fade-out");
-            }, 600);
+        const canvas = document.getElementById('photo-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: -1000, y: -1000 };
+        let time = 0;
+
+        window.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        const img = new Image();
+        img.src = 'foto.png'; 
+        img.onload = initCanvas;
+
+        function initCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            const scale = Math.max(canvas.width / img.width, canvas.height / img.height) * 0.95;
+            const x = (canvas.width * 0.6) - (img.width / 2) * scale; 
+            const y = (canvas.height / 2) - (img.height / 2) * scale;
+            
+            ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+            const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles = [];
+            const step = 5; 
+
+            for (let py=0; py<canvas.height; py+=step) {
+                for (let px=0; px<canvas.width; px+=step) {
+                    const i = (py * canvas.width + px) * 4;
+                    if (data[i+3] > 120) {
+                        const avg = (data[i] + data[i+1] + data[i+2]) / 3;
+                        particles.push({
+                            x: px, y: py, origX: px, origY: py,
+                            color: `rgba(${avg + 25},${avg + 15},${avg + 20}, 0.8)`
+                        });
+                    }
+                }
+            }
+            animate();
         }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            time += 0.02;
+            let driftY = Math.sin(time) * 15;
+            let driftX = Math.cos(time * 0.5) * 10;
+
+            particles.forEach(p => {
+                let targetX = p.origX + driftX;
+                let targetY = p.origY + driftY;
+                let dx = mouse.x - p.x;
+                let dy = mouse.y - p.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if(dist < 100) {
+                    p.x -= dx * 0.08;
+                    p.y -= dy * 0.08;
+                } else {
+                    p.x += (targetX - p.x) * 0.05;
+                    p.y += (targetY - p.y) * 0.05;
+                }
+                
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x, p.y, 1.8, 1.8);
+            });
+            requestAnimationFrame(animate);
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a, h1').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(6)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
+
+        window.addEventListener('resize', initCanvas);
     </script>
 </body>
 </html>
