@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>LC Logo Minimal</title>
+
+<!-- Font sottile e moderno -->
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fdfdfd;
+}
+
+.logo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 140px;
+  font-weight: 700;
+
+  /* inizialmente testo nero */
+  color: #222;
+
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s ease, background 0.5s ease, -webkit-background-clip 0.5s ease, -webkit-text-fill-color 0.5s ease;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+
+  /* barra sfumata */
+  background: linear-gradient(90deg, #7f5a8a, #2e2e2e);
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+
+  /* testo diventa gradient sfumato al passaggio */
+  background: linear-gradient(135deg, #7f5a8a, #2e2e2e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo:hover::after {
+  width: 50%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo">LC</div>
+
+</body>
+</html>
+
+
+
